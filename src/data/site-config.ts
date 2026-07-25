@@ -33,7 +33,7 @@ export const siteConfig: SiteConfig = {
   instagram: "https://www.instagram.com/carnivoorturkiye/",
   address: "Sinpaş Ege Vadisi Alaçatı Çarşısı, Çankaya / Ankara",
   addressDetails: "Sinpaş Ege Vadisi Alaçatı Çarşısı No: 8, Ankara, Turkey",
-  mapsLink: "https://www.google.com/maps/search/?api=1&query=Sinpa%C5%9F+Ege+Vadisi+Ala%C3%A7at%C4%B1+%C3%87ar%C5%9F%C4%B1s%C4%B1+No%3A+8%2C+Ankara%2C+Turkey",
+  mapsLink: "https://www.google.com/maps/place/Carnivoor+Burger+-+Sinpa%C5%9F+Ege+Vadisi/@39.8553293,32.8443775,19.33z/data=!4m6!3m5!1s0x14d349cccbd5bf17:0x33150e28cd73b66f!8m2!3d39.8553256!4d32.8442752!16s%2Fg%2F11k4xtsyw7?entry=ttu&g_ep=EgoyMDI2MDcyMi4wIKXMDSoASAFQAw%3D%3D",
   workingHours: {
     weekdays: "Çalışma saatleri için iletişime geçiniz",
     weekends: "Çalışma saatleri için iletişime geçiniz",
