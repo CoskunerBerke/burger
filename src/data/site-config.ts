@@ -32,8 +32,8 @@ export const siteConfig: SiteConfig = {
   phoneLink: "tel:+903125141488",
   instagram: "https://www.instagram.com/carnivoorturkiye/",
   address: "Sinpaş Ege Vadisi Alaçatı Çarşısı, Çankaya / Ankara",
-  addressDetails: "Yukarı Dikmen Mahallesi, 648. Cadde, Sinpaş Ege Vadisi / Alaçatı Çarşısı, Çankaya / Ankara",
-  mapsLink: "https://www.google.com/maps/search/?api=1&query=Carnivoor+Burger+Sinpa%C5%9F+Ege+Vadisi+Ala%C3%A7at%C4%B1+%C3%87ar%C5%9F%C4%B1s%C4%B1+Ankara",
+  addressDetails: "Yukarı Dikmen Mah, Oran, 648. Cadde 20/A, 06450 Çankaya/Ankara",
+  mapsLink: "https://www.google.com/maps/search/?api=1&query=Yukar%C4%B1+Dikmen+Mah,+Oran,+648.+Cadde+20/A,+06450+%C3%87ankaya/Ankara",
   workingHours: {
     weekdays: "Çalışma saatleri için iletişime geçiniz",
     weekends: "Çalışma saatleri için iletişime geçiniz",
