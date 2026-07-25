@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Carnivoor Türkiye - Mobil Öncelikli Restoran Web Sitesi
 
-## Getting Started
+Bu proje, Ankara Sinpaş Ege Vadisi Alaçatı Çarşısı'nda hizmet veren **Carnivoor Türkiye** için özel olarak geliştirilmiş; modern, iştah açıcı, mobil öncelikli ve satış odaklı profesyonel bir restoran web sitesidir.
 
-First, run the development server:
+---
 
+## 🚀 Teknolojik Altyapı
+
+*   **Next.js 16** (App Router, Server & Client Components)
+*   **React 19**
+*   **TypeScript** (Sıkı tip güvenliği)
+*   **Tailwind CSS v4** (Modern ve performanslı stil altyapısı)
+*   **Framer Motion** (Akıcı mikro etkileşimler ve animasyonlar)
+*   **Lucide Icons** (Vektörel ikon kütüphanesi)
+
+---
+
+## 🛠️ Kurulum ve Çalıştırma
+
+### 1. Bağımlılıkları Yükleyin:
+Proje klasöründe aşağıdaki komutla gerekli tüm paketleri yükleyin:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Geliştirme Sunucusunu Çalıştırın (Local):
+Yerel test sunucusunu başlatmak için:
+```bash
+npm run dev
+```
+Tarayıcınızda `http://localhost:3000` adresini açarak projeyi görüntüleyebilirsiniz.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Production Derleme (Build):
+Canlıya çıkış öncesinde statik sayfaları optimize etmek ve hatasız derlendiğini doğrulamak için:
+```bash
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. Production Sunucusunu Başlatma:
+Derleme sonrasında derlenen paketi yerelde çalıştırmak için:
+```bash
+npm run start
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📂 İçerik Güncelleme ve Yönetim
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Web sitesindeki tüm metinler, menü içerikleri ve galeri görselleri merkezi veri dosyaları üzerinden yönetilmektedir. Veritabanı kurmaya gerek olmadan bu dosyalardaki alanları düzenleyerek siteyi anında güncelleyebilirsiniz.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 1. Genel İşletme ve SEO Ayarları
+Adres, telefon, Instagram hesabı, sitemap URL'si veya SEO açıklamalarını [site-config.ts](file:///c:/Users/berke/OneDrive/Masaüstü/burger/src/data/site-config.ts) dosyasından güncelleyebilirsiniz:
+*   `phone`: Müşterilere gösterilen telefon formatı.
+*   `phoneLink`: Tıklandığında aramayı başlatan `tel:+903125141488` bağlantısı.
+*   `addressDetails`: Tam adres metni.
+*   `mapsLink`: "Yol Tarifi Al" butonunun yönlendiği Google Maps URL'si.
+*   `deliveryPlatforms`: Online sipariş kanalları (boş bırakıldığında butonlar otomatik olarak gizlenir).
 
-## Deploy on Vercel
+### 2. Menü Veri Yönetimi
+Yeni bir yemek eklemek, fiyat güncellemek veya içerik değiştirmek için [menu.ts](file:///c:/Users/berke/OneDrive/Masaüstü/burger/src/data/menu.ts) dosyasını kullanın:
+```ts
+{
+  id: "smash-burger",
+  slug: "smash-burger",
+  name: "Carnivoor Smash Burger",
+  description: "Özel sosu ve cheddar peyniri eşliğinde...",
+  category: "burger", // burger, wing, meatball, side, milkshake, drink
+  price: undefined,   // Fiyat doğrulanmadıysa undefined bırakın (otomatik gizlenir)
+  image: "/menu/smash-burger.jpg",
+  ingredients: ["120g Smash Köfte", "Cheddar"],
+  available: true,    // false ise 'Tükendi' etiketi alır
+  featured: true,     // true ise ana sayfadaki 'Öne Çıkanlar' listesine girer
+  verified: true      // false ise production menüde kesinlikle listelenmez
+}
+```
+> [!IMPORTANT]
+> **Doğruluk Kuralı:** Fiyatı veya içerik/alerjen detayları kesinleşmemiş ürünlerin ilgili alanlarını boş bırakınız. `verified: false` işaretli ürünler production listesinde gizlenir.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 3. Galeri ve Medya Yönetimi
+Masonry galeride yer alan fotoğrafları ve alt yazılarını [gallery.ts](file:///c:/Users/berke/OneDrive/Masaüstü/burger/src/data/gallery.ts) dosyasından düzenleyebilirsiniz.
+*   Görseller `public/gallery/` klasörü içerisine eklenmelidir.
+*   `aspectRatio` alanını `portrait`, `square` veya `landscape` girerek masonry düzenin dengeli durmasını sağlayabilirsiniz.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## ⚡ Vercel Deployment (Dağıtım)
+
+Proje Next.js standartlarına %100 uyumludur ve Vercel platformu ile tek tıkla entegre edilebilir:
+1. GitHub deponuzu Vercel hesabınıza bağlayın.
+2. Build command olarak `npm run build`, Output directory olarak `.next` seçin.
+3. Projeyi yayınlayın.
