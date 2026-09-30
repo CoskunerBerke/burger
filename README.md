@@ -1,91 +1,149 @@
-# Carnivoor Türkiye - Mobil Öncelikli Restoran Web Sitesi
+# Carnivoor Burger — Website
 
-Bu proje, Ankara Sinpaş Ege Vadisi Alaçatı Çarşısı'nda hizmet veren **Carnivoor Türkiye** için özel olarak geliştirilmiş; modern, iştah açıcı, mobil öncelikli ve satış odaklı profesyonel bir restoran web sitesidir.
+**Mobile-first restaurant website and digital menu for Carnivoor, a burger restaurant in Sinpaş Ege Vadisi Alaçatı Çarşısı, Ankara.**
+
+![Next.js](https://img.shields.io/badge/Next.js-16-000000?logo=nextdotjs&logoColor=white)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-12-0055FF?logo=framer&logoColor=white)
+
+> Client project — designed and developed by Berke Coşkuner for **Carnivoor Türkiye**.
+
+![Carnivoor hero image](public/images/hero-carnivoor.jpg)
 
 ---
 
-## 🚀 Teknolojik Altyapı
+## Overview
 
-*   **Next.js 16** (App Router, Server & Client Components)
-*   **React 19**
-*   **TypeScript** (Sıkı tip güvenliği)
-*   **Tailwind CSS v4** (Modern ve performanslı stil altyapısı)
-*   **Framer Motion** (Akıcı mikro etkileşimler ve animasyonlar)
-*   **Lucide Icons** (Vektörel ikon kütüphanesi)
+A Turkish-language, dark "fire and grill" themed website for Carnivoor's Sinpaş Ege Vadisi branch in Çankaya, Ankara. It is built for guests on their phones: browse the menu, open a product page, get directions, call the restaurant or follow it on Instagram. All content comes from typed data files, and details the business has not confirmed yet (prices, working hours, delivery links) are left out instead of guessed.
 
----
+## Features
 
-## 🛠️ Kurulum ve Çalıştırma
+- **Home page**: full-screen hero, menu categories ("Lezzet Grupları"), chef's picks ("Şefin Tercihleri"), brand story, wings highlight, Instagram section, call-to-action and location block
+- **Menu** (`/menu`) with category filter (burger, wing, meatball, side, milkshake, drink) and text search; the category can be opened directly with `?cat=`
+- **Product pages** (`/menu/[slug]`) with ingredients, "Tükendi" (sold out) label, and `MenuItem` / `Offer` JSON-LD
+- **Accuracy rules in data**: `verified: false` items are hidden and prices left `undefined` are not shown; working hours and delivery-platform links (Yemeksepeti, Getir, Migros) stay unset in config until confirmed
+- **Gallery** (`/galeri`) in a responsive masonry layout
+- **Contact** (`/iletisim`) with embedded Google Map, phone link and directions
+- **Mobile action bar** with Menu, Directions and Call shortcuts
+- **SEO**: `Restaurant` and `BreadcrumbList` JSON-LD, `metadataBase`, dynamic `sitemap.xml` and `robots.txt`
+- **Legal pages**: KVKK, privacy policy, cookie policy
 
-### 1. Bağımlılıkları Yükleyin:
-Proje klasöründe aşağıdaki komutla gerekli tüm paketleri yükleyin:
+## Tech stack
+
+| Layer | Tools |
+| --- | --- |
+| Framework | Next.js 16 (App Router, Server & Client Components), React 19 |
+| Language | TypeScript 5 |
+| Styling | Tailwind CSS 4 |
+| Animation | Framer Motion |
+| Icons | lucide-react |
+
+## Project structure
+
+```text
+src/
+├── app/
+│   ├── page.tsx              # Home
+│   ├── menu/                 # Menu list + [slug] product page
+│   ├── galeri/, hakkimizda/, iletisim/
+│   ├── kvkk/, gizlilik-politikasi/, cerez-politikasi/
+│   ├── robots.ts, sitemap.ts
+├── components/               # Header, Footer, MobileActionBar
+└── data/
+    ├── site-config.ts        # Brand, phone, address, maps link, hours, delivery links, SEO
+    ├── menu.ts               # Menu items with verified / available / featured flags
+    └── gallery.ts            # Gallery images, captions, aspect ratios
+public/
+├── images/                   # Hero and background images
+├── menu/                     # Product photos
+└── gallery/                  # Gallery photos
+```
+
+## Getting started
+
 ```bash
 npm install
-```
-
-### 2. Geliştirme Sunucusunu Çalıştırın (Local):
-Yerel test sunucusunu başlatmak için:
-```bash
-npm run dev
-```
-Tarayıcınızda `http://localhost:3000` adresini açarak projeyi görüntüleyebilirsiniz.
-
-### 3. Production Derleme (Build):
-Canlıya çıkış öncesinde statik sayfaları optimize etmek ve hatasız derlendiğini doğrulamak için:
-```bash
+npm run dev      # http://localhost:3000
+npm run lint
 npm run build
-```
-
-### 4. Production Sunucusunu Başlatma:
-Derleme sonrasında derlenen paketi yerelde çalıştırmak için:
-```bash
 npm run start
 ```
 
----
+No environment variables are required.
 
-## 📂 İçerik Güncelleme ve Yönetim
+## Updating content
 
-Web sitesindeki tüm metinler, menü içerikleri ve galeri görselleri merkezi veri dosyaları üzerinden yönetilmektedir. Veritabanı kurmaya gerek olmadan bu dosyalardaki alanları düzenleyerek siteyi anında güncelleyebilirsiniz.
+- **Business info & SEO** → `src/data/site-config.ts`: `phone`, `phoneLink`, `addressDetails`, `mapsLink`, `workingHours`, `deliveryPlatforms`, `seo.canonicalUrl`.
+- **Menu** → `src/data/menu.ts`. Example item:
 
-### 1. Genel İşletme ve SEO Ayarları
-Adres, telefon, Instagram hesabı, sitemap URL'si veya SEO açıklamalarını [site-config.ts](file:///c:/Users/berke/OneDrive/Masaüstü/burger/src/data/site-config.ts) dosyasından güncelleyebilirsiniz:
-*   `phone`: Müşterilere gösterilen telefon formatı.
-*   `phoneLink`: Tıklandığında aramayı başlatan `tel:+903125141488` bağlantısı.
-*   `addressDetails`: Tam adres metni.
-*   `mapsLink`: "Yol Tarifi Al" butonunun yönlendiği Google Maps URL'si.
-*   `deliveryPlatforms`: Online sipariş kanalları (boş bırakıldığında butonlar otomatik olarak gizlenir).
-
-### 2. Menü Veri Yönetimi
-Yeni bir yemek eklemek, fiyat güncellemek veya içerik değiştirmek için [menu.ts](file:///c:/Users/berke/OneDrive/Masaüstü/burger/src/data/menu.ts) dosyasını kullanın:
 ```ts
 {
   id: "smash-burger",
   slug: "smash-burger",
   name: "Carnivoor Smash Burger",
-  description: "Özel sosu ve cheddar peyniri eşliğinde...",
-  category: "burger", // burger, wing, meatball, side, milkshake, drink
-  price: undefined,   // Fiyat doğrulanmadıysa undefined bırakın (otomatik gizlenir)
+  category: "burger",   // burger | wing | meatball | side | milkshake | drink
+  price: undefined,     // leave undefined until confirmed (hidden automatically)
   image: "/menu/smash-burger.jpg",
-  ingredients: ["120g Smash Köfte", "Cheddar"],
-  available: true,    // false ise 'Tükendi' etiketi alır
-  featured: true,     // true ise ana sayfadaki 'Öne Çıkanlar' listesine girer
-  verified: true      // false ise production menüde kesinlikle listelenmez
+  available: true,      // false → "Tükendi" label
+  featured: true,       // true → shown in "Şefin Tercihleri" on the home page
+  verified: true        // false → never listed in production
 }
 ```
-> [!IMPORTANT]
-> **Doğruluk Kuralı:** Fiyatı veya içerik/alerjen detayları kesinleşmemiş ürünlerin ilgili alanlarını boş bırakınız. `verified: false` işaretli ürünler production listesinde gizlenir.
 
-### 3. Galeri ve Medya Yönetimi
-Masonry galeride yer alan fotoğrafları ve alt yazılarını [gallery.ts](file:///c:/Users/berke/OneDrive/Masaüstü/burger/src/data/gallery.ts) dosyasından düzenleyebilirsiniz.
-*   Görseller `public/gallery/` klasörü içerisine eklenmelidir.
-*   `aspectRatio` alanını `portrait`, `square` veya `landscape` girerek masonry düzenin dengeli durmasını sağlayabilirsiniz.
+- **Gallery** → `src/data/gallery.ts` + images in `public/gallery/` (`aspectRatio`: `portrait`, `square` or `landscape`).
+
+## Deployment
+
+Standard Next.js project, ready for Vercel: connect the repository, keep `npm run build` as the build command and deploy.
 
 ---
 
-## ⚡ Vercel Deployment (Dağıtım)
+## Türkçe
 
-Proje Next.js standartlarına %100 uyumludur ve Vercel platformu ile tek tıkla entegre edilebilir:
-1. GitHub deponuzu Vercel hesabınıza bağlayın.
-2. Build command olarak `npm run build`, Output directory olarak `.next` seçin.
-3. Projeyi yayınlayın.
+**Carnivoor için mobil öncelikli restoran web sitesi ve dijital menü — Sinpaş Ege Vadisi Alaçatı Çarşısı, Ankara.**
+
+> Müşteri projesi — **Carnivoor Türkiye** için Berke Coşkuner tarafından tasarlandı ve geliştirildi.
+
+### Genel bakış
+
+Carnivoor'un Çankaya, Sinpaş Ege Vadisi şubesi için koyu "ateş ve ızgara" temalı Türkçe web sitesi. Misafirler telefondan menüye göz atabilir, ürün sayfalarını açabilir, yol tarifi alabilir, restoranı arayabilir veya Instagram'dan takip edebilir. Tüm içerik tipli veri dosyalarından gelir; işletmenin henüz doğrulamadığı bilgiler (fiyatlar, çalışma saatleri, sipariş platformları) tahmin edilmek yerine boş bırakılır.
+
+### Özellikler
+
+- Hero, lezzet grupları, şefin tercihleri, marka hikâyesi, Instagram ve konum bölümlerinden oluşan ana sayfa
+- Kategori filtresi ve arama içeren **menü** sayfası (`/menu`, `?cat=` ile doğrudan kategori)
+- İçerik, "Tükendi" etiketi ve `MenuItem` JSON-LD içeren **ürün sayfaları**
+- Doğruluk kuralları: `verified: false` ürünler gizlenir, girilmemiş fiyatlar gösterilmez; çalışma saatleri ve sipariş platformu bağlantıları doğrulanana kadar boş bırakılır
+- Masonry düzenli **galeri**, Google Haritalı **iletişim** sayfası
+- Menü, Yol Tarifi ve Ara kısayollarını içeren mobil aksiyon çubuğu
+- `Restaurant` JSON-LD, dinamik sitemap ve robots; KVKK, gizlilik ve çerez sayfaları
+
+### Teknolojiler
+
+Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4, Framer Motion, lucide-react.
+
+### Kurulum
+
+```bash
+npm install
+npm run dev      # http://localhost:3000
+npm run build && npm run start
+```
+
+Ortam değişkeni gerekmez.
+
+### İçerik güncelleme
+
+- İşletme bilgileri ve SEO → `src/data/site-config.ts`
+- Menü → `src/data/menu.ts` (fiyatı kesinleşmeyen ürünlerde `price` alanını boş bırakın)
+- Galeri → `src/data/gallery.ts` ve `public/gallery/`
+
+### Yayınlama
+
+Standart bir Next.js projesidir; depoyu Vercel'e bağlayıp `npm run build` komutuyla yayınlayabilirsiniz.
+
+---
+
+Built by [Berke Coşkuner](https://github.com/CoskunerBerke)
