@@ -88,15 +88,11 @@ No environment variables are required.
   image: "/menu/smash-burger.jpg",
   available: true,      // false → "Tükendi" label
   featured: true,       // true → shown in "Şefin Tercihleri" on the home page
-  verified: true        // false → never listed in production
+  verified: true        // false → hidden everywhere on the site
 }
 ```
 
 - **Gallery** → `src/data/gallery.ts` + images in `public/gallery/` (`aspectRatio`: `portrait`, `square` or `landscape`).
-
-## Deployment
-
-Standard Next.js project, ready for Vercel: connect the repository, keep `npm run build` as the build command and deploy.
 
 ---
 
@@ -139,10 +135,6 @@ Ortam değişkeni gerekmez.
 - İşletme bilgileri ve SEO → `src/data/site-config.ts`
 - Menü → `src/data/menu.ts` (fiyatı kesinleşmeyen ürünlerde `price` alanını boş bırakın)
 - Galeri → `src/data/gallery.ts` ve `public/gallery/`
-
-### Yayınlama
-
-Standart bir Next.js projesidir; depoyu Vercel'e bağlayıp `npm run build` komutuyla yayınlayabilirsiniz.
 
 ---
 
